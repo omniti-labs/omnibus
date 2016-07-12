@@ -227,11 +227,12 @@ module Omnibus
       render_template(resource_path("gen.manifestfile.erb"),
         destination: pkg_metadata_file,
         variables: {
-          name:              safe_base_package_name,
-          fmri_package_name: fmri_package_name,
-          description:       project.description,
-          summary:           project.friendly_name,
-          arch:              safe_architecture,
+          name:                   safe_base_package_name,
+          fmri_package_namespace: fmri_package_namespace,
+          fmri_package_name:      fmri_package_name,
+          description:            project.description,
+          summary:                project.friendly_name,
+          arch:                   safe_architecture,
         }
       )
 
