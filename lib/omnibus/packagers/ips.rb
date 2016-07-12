@@ -74,6 +74,26 @@ module Omnibus
     expose :publisher_prefix
 
     #
+    # The namespace for the IPS package.
+    #
+    # @example
+    #   identifier 'system/management'
+    #
+    # @param [String] val
+    #   the package namespace identifier
+    #
+    # @return [String]
+    #
+    def package_namespace(val = NULL)
+      if null?(val)
+        @package_namespace || "developer/versioning"
+      else
+        @package_namespace = val
+      end
+    end
+    expose :package_namespace
+
+    #
     # @!endgroup
     # --------------------------------------------------
 
@@ -89,6 +109,10 @@ module Omnibus
     #
     #   http://docs.oracle.com/cd/E23824_01/html/E21796/pkg-5.html
     #
+    def fmri_package_namespace
+      @package_namespace
+    end
+
     def fmri_package_name
       version = project.build_version.split(/[^\d]/)[0..2].join(".")
       platform = Ohai["platform_version"]
