@@ -117,7 +117,7 @@ module Omnibus
       version = project.build_version.split(/[^\d]/)[0..2].join(".")
       platform = Ohai["platform_version"]
       if omnios?
-        "#{safe_base_package_name}@#{version},5.11-#{project.build_iteration}.#{platform}"
+        "#{safe_base_package_name}@#{version},5.11-0.#{platform}"
       else
         "#{safe_base_package_name}@#{version},#{platform}-#{project.build_iteration}"
       end
