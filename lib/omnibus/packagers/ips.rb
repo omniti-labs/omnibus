@@ -116,7 +116,12 @@ module Omnibus
     def fmri_package_name
       version = project.build_version.split(/[^\d]/)[0..2].join(".")
       platform = Ohai["platform_version"]
-      "#{safe_base_package_name}@#{version},#{platform}-#{project.build_iteration}"
+      if omnios?
+        iteration = project.build_iteration.gsub(/^(\d+):/, "\\1.#{platform}:")
+        "#{safe_base_package_name}@#{version},5.11-#{iteration}"
+      else
+        "#{safe_base_package_name}@#{version},#{platform}-#{project.build_iteration}"
+      end
     end
 
     #
